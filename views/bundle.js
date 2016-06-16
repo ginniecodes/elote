@@ -26790,37 +26790,51 @@ var Single = _react2.default.createClass({
 exports.default = Single;
 
 },{"react":242,"react-router":96}],261:[function(require,module,exports){
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
-var _react = require("react");
+var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = require('react-router');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Story = _react2.default.createClass({
-	displayName: "Story",
+	displayName: 'Story',
 	render: function render() {
+		var _props = this.props;
+		var post = _props.post;
+		var i = _props.i;
+		var comments = _props.comments;
+
 		return _react2.default.createElement(
-			"figure",
-			{ className: "box" },
-			"I am a story!"
+			'figure',
+			{ className: 'box' },
+			_react2.default.createElement(
+				'div',
+				{ className: 'wrap' },
+				_react2.default.createElement(_reactRouter.Link, { to: '/user/story/' + post.code }),
+				post.caption
+			)
 		);
 	}
 });
 
 exports.default = Story;
 
-},{"react":242}],262:[function(require,module,exports){
+},{"react":242,"react-router":96}],262:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _react = require('react');
 
@@ -26835,6 +26849,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var StoryGrid = _react2.default.createClass({
   displayName: 'StoryGrid',
   render: function render() {
+    var _this = this;
+
     return _react2.default.createElement(
       'div',
       { className: 'story-grid' },
@@ -26842,7 +26858,7 @@ var StoryGrid = _react2.default.createClass({
         'pre',
         null,
         this.props.posts.map(function (story, i) {
-          return _react2.default.createElement(_Story2.default, null);
+          return _react2.default.createElement(_Story2.default, _extends({}, _this.props, { key: i, i: i, post: post }));
         })
       )
     );

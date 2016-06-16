@@ -1,5 +1,17 @@
+//It needs 2 things
+
+//A copy of the actual state
+//And what you need to change
+
 export default function posts(state = [], action) {
-	console.log('This is going to change');
-	console.log(state, action);
-	return state;
+	switch(action.type) {
+		case 'INCREMENT_LIKES':
+		  return [
+		  ...state.slice(0, i),
+		  {...state[i], likes: state[i].likes + 1},
+		  ...state.slice(i + 1)
+		  ];
+		default:
+		  return state;
+	}
 }
